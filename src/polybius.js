@@ -40,7 +40,8 @@ const polybiusModule = (function () {
     let output = "";
     for (let i = 0; i < input.length; i++) {
       const char = input[i];
-      const charCode = polybiusCodes[char];
+      let charCode = polybiusCodes[char];
+      if(!charCode) charCode = char;
       output += charCode;
     }
     return output;
@@ -63,6 +64,7 @@ const polybiusModule = (function () {
         (key) => polybiusCodes[key] === code
       );
       if (char === "i") char = "(i/j)";
+      if(!char) {output = false; break;}
       output += char;
     }
     return output;
